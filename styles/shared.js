@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 
 export const colors = {
   primary: "#fff",
+  tint: "#000",
 };
 
 export const StyledContainer = styled.View`
