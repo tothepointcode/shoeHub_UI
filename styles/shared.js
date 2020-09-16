@@ -5,12 +5,11 @@ import styled from "styled-components/native";
 export const colors = {
   primary: "#fff",
   tint: "#000",
+  gray: "#A0AEC0",
 };
 
 export const StyledContainer = styled.View`
   flex: 1;
-  justify-content: center;
-  align-items: center;
   background-color: ${colors.primary};
-  padding: 20px;
+  padding-horizontal: 20px;
 `;
