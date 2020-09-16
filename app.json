@@ -1,12 +1,10 @@
 {
-  "name": "shoeHub",
-  "displayName": "shoeHub",
+  "name": "Shoe Hub",
+  "displayName": "Shoe Hub",
   "expo": {
-    "name": "shoeHub",
+    "name": "Shoe Hub",
     "slug": "shoeHub",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   }
 }
