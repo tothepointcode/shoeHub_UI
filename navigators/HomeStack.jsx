@@ -31,7 +31,7 @@ const HeaderRight = () => (
 );
 
 const Stack = createStackNavigator();
-const { tint } = colors;
+const { tint, primary } = colors;
 
 const HomeStack = () => (
   <Stack.Navigator
@@ -39,9 +39,9 @@ const HomeStack = () => (
     screenOptions={{
       headerStyle: {
         borderBottomWidth: 0,
-        borderBottomColor: "red",
         elevation: 0,
         height: 100,
+        backgroundColor: primary
       },
       headerTintColor: tint,
       headerTitleStyle: {

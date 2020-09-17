@@ -7,7 +7,7 @@ export const colors = {
   white: '#fff',
   tint: "#000",
   gray: "#A0AEC0",
-  lighttint: "#2D3748"
+  lighttint: "#4A5568"
 };
 
 export const StyledContainer = styled.View`
