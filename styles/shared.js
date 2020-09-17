@@ -76,9 +76,12 @@ export const Title = styled.Text`
   font-weight: bold;
   color: ${(props) => props.color || primary};
   padding-bottom: 5px;
-  font-size: 18px;
+  font-size: ${(props) => props.size || "18"}px;
+
 `;
 
 export const SubTitle = styled.Text`
   color: ${(props) => props.color || primary};
+  font-size: ${(props) => props.size || "14"}px;
+
 `;

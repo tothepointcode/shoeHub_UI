@@ -90,6 +90,9 @@ const Detail = () => {
 
   const smallTiles = ["Small Images", "Small Images", "Small Images"];
 
+  const sampleInfo =
+    "Designed for Kyrie Irving's creative and unpredictable game, the Kyrie 6 focuses on comfort, control and energy return...";
+
   const [selectedSize, setSelectedSize] = useState();
   const [selectedTile, setSelectedTile] = useState();
   const [addedToCart, setAddedToCart] = useState();
@@ -213,7 +216,7 @@ const Detail = () => {
           </ScrollView>
         </Discover>
       </StyledContainer>
-      <BottomSheet />
+      <BottomSheet details={sampleInfo} />
     </>
   );
 };
