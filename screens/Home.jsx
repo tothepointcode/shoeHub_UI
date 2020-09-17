@@ -135,7 +135,7 @@ const ImageTiles = ({ data, navigation }) => {
             </ItemHead>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate("Detail")}
+              onPress={() => navigation.navigate("Detail", {index})}
               style={{
                 flex: 1,
                 justifyContent: "center",

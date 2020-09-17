@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { AntDesign, Feather, Entypo } from "@expo/vector-icons";
 
 import { ShoesData } from "./Home";
@@ -78,7 +78,7 @@ const AddToCart = styled(TouchableOpacity)`
   margin-top: 45px;
 `;
 
-const Detail = () => {
+const Detail = ({ route }) => {
   const sizes = [
     "UK 6",
     "UK 7",
@@ -90,42 +90,56 @@ const Detail = () => {
     "UK 13",
   ];
 
-  const smallTiles = ["Small Images", "Small Images", "Small Images"];
-
   const sampleInfo =
     "Designed for Kyrie Irving's creative and unpredictable game, the Kyrie 6 focuses on comfort, control and energy return...";
 
   const [selectedSize, setSelectedSize] = useState();
-  const [selectedTile, setSelectedTile] = useState();
+  const [selectedTile, setSelectedTile] = useState(1);
   const [addedToCart, setAddedToCart] = useState();
 
   const data = useContext(ShoesData);
+
+  const chosenId = route.params.index;
+  const ActiveData = data.popular.main[chosenId];
+  const smallTiles = [...ActiveData.img.filter((item, index) => index !== 0)];
 
   return (
     <>
       <StyledContainer>
         <View
           style={{
-            backgroundColor: "red",
             height: "35%",
           }}
         >
-          <Text>Big Image</Text>
+          <Image
+            resizeMode="contain"
+            style={{ height: "100%", width: "100%" }}
+            source={smallTiles[selectedTile]}
+          />
         </View>
+
         <VarietySectionView>
           {smallTiles.map((tile, index) => {
             if (index === selectedTile) {
               return (
                 <Ring key={index}>
                   <SmallTile>
-                    <Text>Small Images</Text>
+                    <Image
+                      resizeMode="contain"
+                      style={{ height: "100%", width: "100%" }}
+                      source={tile}
+                    />
                   </SmallTile>
                 </Ring>
               );
             } else {
               return (
                 <SmallTile key={index} onPress={() => setSelectedTile(index)}>
-                  <Text>{tile}</Text>
+                  <Image
+                    resizeMode="contain"
+                    style={{ height: "100%", width: "100%" }}
+                    source={tile}
+                  />
                 </SmallTile>
               );
             }
