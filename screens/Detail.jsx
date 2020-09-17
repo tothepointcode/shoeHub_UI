@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { AntDesign, Ionicons, Entypo } from "@expo/vector-icons";
+import { AntDesign, Feather, Entypo } from "@expo/vector-icons";
 
 // Bottom sheet
 import BottomSheet from "./../components/BottomSheet";
@@ -77,6 +77,23 @@ const AddToCart = styled(TouchableOpacity)`
 `;
 
 const Detail = () => {
+  const sizes = [
+    "UK 6",
+    "UK 7",
+    "UK 8",
+    "UK 9",
+    "UK 10",
+    "UK 11",
+    "UK 12",
+    "UK 13",
+  ];
+
+  const smallTiles = ["Small Images", "Small Images", "Small Images"];
+
+  const [selectedSize, setSelectedSize] = useState();
+  const [selectedTile, setSelectedTile] = useState();
+  const [addedToCart, setAddedToCart] = useState();
+
   return (
     <>
       <StyledContainer>
@@ -89,22 +106,27 @@ const Detail = () => {
           <Text>Big Image</Text>
         </View>
         <VarietySectionView>
-          <Ring>
-            <SmallTile>
-              <Text>Small Images</Text>
-            </SmallTile>
-          </Ring>
-
-          <SmallTile>
-            <Text>Small Images</Text>
-          </SmallTile>
-          <SmallTile>
-            <Text>Small Images</Text>
-          </SmallTile>
+          {smallTiles.map((tile, index) => {
+            if (index === selectedTile) {
+              return (
+                <Ring key={index}>
+                  <SmallTile>
+                    <Text>Small Images</Text>
+                  </SmallTile>
+                </Ring>
+              );
+            } else {
+              return (
+                <SmallTile key={index} onPress={() => setSelectedTile(index)}>
+                  <Text>{tile}</Text>
+                </SmallTile>
+              );
+            }
+          })}
         </VarietySectionView>
 
         <Discover>
-          <DiscoverView style={{padding: 10}}>
+          <DiscoverView style={{ padding: 10 }}>
             <SectionText
               style={{
                 fontWeight: "bold",
@@ -122,70 +144,72 @@ const Detail = () => {
             style={{
               maxHeight: 200,
             }}
+            showsVerticalScrollIndicator={false}
           >
             <SizeView>
-              <Size>
-                <TouchableOpacity>
-                  <SubTitle style={{ fontSize: 16 }} color={lighttint}>
-                    UK 6
-                  </SubTitle>
-                </TouchableOpacity>
-              </Size>
-
-              <Size>
-                <TouchableOpacity>
-                  <SubTitle style={{ fontSize: 16 }} color={lighttint}>
-                    UK 6
-                  </SubTitle>
-                </TouchableOpacity>
-              </Size>
-
-              <Size>
-                <TouchableOpacity>
-                  <SubTitle style={{ fontSize: 16 }} color={lighttint}>
-                    UK 6
-                  </SubTitle>
-                </TouchableOpacity>
-              </Size>
-
-              <Size>
-                <TouchableOpacity>
-                  <SubTitle style={{ fontSize: 16 }} color={lighttint}>
-                    UK 6
-                  </SubTitle>
-                </TouchableOpacity>
-              </Size>
-
-              <SelectedSize>
-                <TouchableOpacity>
-                  <SubTitle style={{ fontSize: 16 }} color={white}>
-                    UK 12
-                  </SubTitle>
-                </TouchableOpacity>
-              </SelectedSize>
-
-              <Size>
-                <TouchableOpacity>
-                  <SubTitle style={{ fontSize: 16 }} color={lighttint}>
-                    UK 6
-                  </SubTitle>
-                </TouchableOpacity>
-              </Size>
-
-              <Size>
-                <TouchableOpacity>
-                  <SubTitle style={{ fontSize: 16 }} color={lighttint}>
-                    UK 6
-                  </SubTitle>
-                </TouchableOpacity>
-              </Size>
+              {sizes.map((size, index) => {
+                if (index === selectedSize) {
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        setSelectedSize(undefined);
+                        setAddedToCart(false);
+                      }}
+                    >
+                      <SelectedSize>
+                        <SubTitle style={{ fontSize: 16 }} color={white}>
+                          {size}
+                        </SubTitle>
+                      </SelectedSize>
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        setSelectedSize(index);
+                        setAddedToCart(false);
+                      }}
+                    >
+                      <Size>
+                        <SubTitle style={{ fontSize: 16 }} color={lighttint}>
+                          {size}
+                        </SubTitle>
+                      </Size>
+                    </TouchableOpacity>
+                  );
+                }
+              })}
             </SizeView>
 
-            <AddToCart>
-              <SubTitle style={{ fontSize: 16 }} color={white}>
-                Add to bag
-              </SubTitle>
-            </AddToCart>
+            {selectedSize !== undefined && addedToCart !== true && (
+              <AddToCart onPress={() => setAddedToCart(true)}>
+                <SubTitle style={{ fontSize: 16 }} color={white}>
+                  Add to bag
+                </SubTitle>
+              </AddToCart>
+            )}
+
+            {selectedSize !== undefined && addedToCart === true && (
+              <AddToCart
+                style={{ backgroundColor: "#4FD1C5" }}
+                onPress={() => setAddedToCart(false)}
+              >
+                <SubTitle
+                  style={{
+                    fontSize: 16,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  color={white}
+                >
+                  <Feather name="shopping-bag" size={17} color={white} /> Added
+                  to bag
+                </SubTitle>
+              </AddToCart>
+            )}
           </ScrollView>
         </Discover>
       </StyledContainer>
