@@ -107,7 +107,7 @@ const HomeText = styled.Text`
   padding-left: 12px;
 `;
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [activeSection, setActiveSection] = useState(0);
 
   const sections = [
@@ -161,7 +161,8 @@ const Home = () => {
                 <AntDesign name="hearto" size={25} color={primary} />
               </TouchableOpacity>
             </ItemHead>
-            <View
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Detail")}
               style={{
                 backgroundColor: "white",
                 flex: 1,
@@ -170,7 +171,7 @@ const Home = () => {
               }}
             >
               <Text>Image space</Text>
-            </View>
+            </TouchableOpacity>
           </ShoeItem>
         </ScrollView>
       </ShowCase>

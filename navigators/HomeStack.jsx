@@ -4,6 +4,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 // React nav
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./../screens/Home";
+import Detail from "./../screens/Detail";
 
 // style
 import { colors } from "./../styles/shared";
@@ -19,16 +20,30 @@ const StyledHeadTouchable = styled(TouchableOpacity)`
   padding: 10px;
 `;
 
-const HeaderRight = () => (
-  <StyledRightView>
-    <StyledHeadTouchable onPress={() => alert("Search")}>
-      <AntDesign name="search1" size={25} color="black" />
-    </StyledHeadTouchable>
-    <StyledHeadTouchable onPress={() => alert("Account")}>
-      <AntDesign name="user" size={25} color="black" />
-    </StyledHeadTouchable>
-  </StyledRightView>
-);
+const HeaderRight = ({ mode }) => {
+  return (
+    <>
+      {mode !== "Detail" && (
+        <StyledRightView>
+          <StyledHeadTouchable onPress={() => alert("Search")}>
+            <AntDesign name="search1" size={25} color="black" />
+          </StyledHeadTouchable>
+          <StyledHeadTouchable onPress={() => alert("Account")}>
+            <AntDesign name="user" size={25} color="black" />
+          </StyledHeadTouchable>
+        </StyledRightView>
+      )}
+
+      {mode === "Detail" && (
+        <StyledRightView>
+          <StyledHeadTouchable>
+            <AntDesign name="hearto" size={25} color={tint} />
+          </StyledHeadTouchable>
+        </StyledRightView>
+      )}
+    </>
+  );
+};
 
 const Stack = createStackNavigator();
 const { tint, primary } = colors;
@@ -41,7 +56,7 @@ const HomeStack = () => (
         borderBottomWidth: 0,
         elevation: 0,
         height: 100,
-        backgroundColor: primary
+        backgroundColor: primary,
       },
       headerTintColor: tint,
       headerTitleStyle: {
@@ -58,6 +73,14 @@ const HomeStack = () => (
       }}
       name="Home"
       component={Home}
+    />
+    <Stack.Screen
+      options={{
+        headerRight: () => <HeaderRight mode="Detail" />,
+        title: "",
+      }}
+      name="Detail"
+      component={Detail}
     />
   </Stack.Navigator>
 );
