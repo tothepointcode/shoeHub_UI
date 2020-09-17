@@ -46,7 +46,7 @@ export const ShoeItem = styled.View`
   margin-right: 25px;
   border-radius: 25px;
   padding: 20px;
-  height: 300px;
+  height: 320px;
 `;
 
 export const ItemHead = styled.View`
@@ -63,6 +63,7 @@ export const DiscoverShoeItem = styled(ShoeItem)`
   padding: 0px;
   margin: 0px;
   margin-top: 25px;
+  height: 210px;
 `;
 
 export const DiscoverFoot = styled(ItemHead)`

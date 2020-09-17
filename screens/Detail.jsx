@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { AntDesign, Feather, Entypo } from "@expo/vector-icons";
+
+import { ShoesData } from "./Home";
 
 // Bottom sheet
 import BottomSheet from "./../components/BottomSheet";
@@ -96,6 +98,8 @@ const Detail = () => {
   const [selectedSize, setSelectedSize] = useState();
   const [selectedTile, setSelectedTile] = useState();
   const [addedToCart, setAddedToCart] = useState();
+
+  const data = useContext(ShoesData);
 
   return (
     <>
