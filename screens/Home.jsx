@@ -3,22 +3,23 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 
 // Styled components
-import { StyledContainer, colors } from "./../styles/shared";
+import {
+  StyledContainer,
+  colors,
+  SectionView,
+  SectionText,
+  Discover,
+  DiscoverView,
+  DiscoverShoeItem,
+  DiscoverFoot,
+  Title,
+  SubTitle,
+  ShoeItem,
+  ItemHead
+} from "./../styles/shared";
 import styled from "styled-components/native";
 
 const { primary, tint, gray, lighttint, white } = colors;
-
-const SectionView = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 15px;
-`;
-
-const SectionText = styled.Text`
-  font-size: 20px;
-  letter-spacing: 0.5px;
-  color: ${gray};
-`;
 
 const SectionTouchable = styled(TouchableOpacity)``;
 
@@ -30,57 +31,6 @@ const Underline = styled.View`
 
 const ShowCase = styled(View)`
   margin-vertical: 15px;
-`;
-
-const ShoeItem = styled.View`
-  background-color: ${gray};
-  width: 250px;
-  margin-right: 25px;
-  border-radius: 25px;
-  padding: 20px;
-  height: 300px;
-`;
-
-const DiscoverShoeItem = styled(ShoeItem)`
-  background-color: ${primary};
-  width: 45%;
-  padding: 0px;
-  margin: 0px;
-  margin-top: 25px;
-`;
-
-const ItemHead = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: ${(props) => props.pos || "flex-start"};
-  padding: 15px;
-`;
-
-const DiscoverFoot = styled(ItemHead)`
-  align-items: ${(props) => props.pos || "flex-start"};
-  background-color: ${white};
-  border-radius: 25px;
-  elevation: 1;
-`;
-
-const Title = styled.Text`
-  font-weight: bold;
-  color: ${(props) => props.color || primary};
-  padding-bottom: 5px;
-  font-size: 18px;
-`;
-
-const SubTitle = styled.Text`
-  color: ${(props) => props.color || primary};
-`;
-
-const Discover = styled.View`
-  flex: 1;
-`;
-
-const DiscoverView = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
 `;
 
 const HomeButton = styled.View`
