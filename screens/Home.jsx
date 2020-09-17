@@ -33,7 +33,7 @@ const ShowCase = styled(View)`
   margin-vertical: 15px;
 `;
 
-const HomeButton = styled.View`
+const HomeButton = styled(TouchableOpacity)`
   background-color: ${tint};
   flex-direction: row;
   width: 40%;
@@ -135,7 +135,7 @@ const ImageTiles = ({ data, navigation }) => {
             </ItemHead>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate("Detail", {index})}
+              onPress={() => navigation.navigate("Detail", { index })}
               style={{
                 flex: 1,
                 justifyContent: "center",
@@ -197,60 +197,69 @@ const Home = (props, { navigation }) => {
         })}
       </SectionView>
 
-      <ShowCase>
-        <ScrollView horizontal={true}>
-          <ImageTiles data={data} {...props} />
-        </ScrollView>
-      </ShowCase>
+      {activeSection === 0 && (
+        <>
+          <ShowCase>
+            <ScrollView horizontal={true}>
+              <ImageTiles data={data} {...props} />
+            </ScrollView>
+          </ShowCase>
 
-      <Discover>
-        <DiscoverView>
-          <SectionText
-            style={{
-              fontWeight: "bold",
-              color: lighttint,
-            }}
-          >
-            DISCOVER
-          </SectionText>
-          <SectionText>
-            <Ionicons name="ios-list" size={25} color={lighttint} />
-          </SectionText>
-        </DiscoverView>
+          <Discover>
+            <DiscoverView>
+              <SectionText
+                style={{
+                  fontWeight: "bold",
+                  color: lighttint,
+                }}
+              >
+                DISCOVER
+              </SectionText>
+              <SectionText>
+                <Ionicons name="ios-list" size={25} color={lighttint} />
+              </SectionText>
+            </DiscoverView>
 
-        <DiscoverView>
-          {discover.map((discoverItem, index) => {
-            return (
-              <DiscoverShoeItem key={index}>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: "100%", height: "100%" }}
-                    source={discoverItem.img[0]}
-                  />
-                </View>
+            <DiscoverView>
+              {discover.map((discoverItem, index) => {
+                return (
+                  <DiscoverShoeItem key={index}>
+                    <View
+                      style={{
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Image
+                        resizeMode="contain"
+                        style={{ width: "100%", height: "100%" }}
+                        source={discoverItem.img[0]}
+                      />
+                    </View>
 
-                <DiscoverFoot pos="flex-end">
-                  <View>
-                    <Title color={tint}>Kyrie 6</Title>
-                    <SubTitle color={lighttint}>$130.00</SubTitle>
-                  </View>
-                  <TouchableOpacity>
-                    <AntDesign name="hearto" size={25} color={lighttint} />
-                  </TouchableOpacity>
-                </DiscoverFoot>
-              </DiscoverShoeItem>
-            );
-          })}
-        </DiscoverView>
-      </Discover>
-      <HomeButton>
+                    <DiscoverFoot pos="flex-end">
+                      <View>
+                        <Title color={tint}>Kyrie 6</Title>
+                        <SubTitle color={lighttint}>$130.00</SubTitle>
+                      </View>
+                      <TouchableOpacity>
+                        <AntDesign name="hearto" size={25} color={lighttint} />
+                      </TouchableOpacity>
+                    </DiscoverFoot>
+                  </DiscoverShoeItem>
+                );
+              })}
+            </DiscoverView>
+          </Discover>
+        </>
+      )}
+      {activeSection !== 0 && (
+        <Text style={{ textAlign: "center", fontSize: 20 }}>
+          {sections[activeSection].name} Here!
+        </Text>
+      )}
+      <HomeButton onPress={() => setActiveSection(0)}>
         <HomeIcon name="home" size={25} color={primary} />
         <HomeText>Home</HomeText>
       </HomeButton>
