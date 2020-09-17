@@ -6,6 +6,8 @@ import BottomSheet from "reanimated-bottom-sheet";
 import { StyledContainer, colors, Title, SubTitle } from "./../styles/shared";
 import styled from "styled-components/native";
 
+import { ShoesData } from "./../screens/Home";
+
 const { tint, lightgray, lighttint, white } = colors;
 
 const Bar = styled.View`
@@ -28,11 +30,16 @@ const SheetText = styled.Text`
   font-size: 16px;
 `;
 
-export default function Sheet({ details }) {
-  const [info, setInfo] = React.useState();
-  const [name, setName] = React.useState();
-  const [price, setPrice] = React.useState();
+export default function Sheet({ chosenId }) {
+  const sampleInfo =
+    "Designed for Kyrie Irving's creative and unpredictable game, the Kyrie 6 focuses on comfort, control and energy return...";
+
   const [bgcolor, setbgcolor] = React.useState();
+  const [show, setShow] = React.useState(false);
+
+  const data = React.useContext(ShoesData);
+  const ActiveInfo = data.popular.main[chosenId];
+  const { name, price } = ActiveInfo;
 
   const renderContent = () => (
     <View
@@ -44,15 +51,19 @@ export default function Sheet({ details }) {
       }}
     >
       <Bar />
-      <SheetHead>
-        <Title size={25} color={tint}>
-          {name}
-        </Title>
-        <SubTitle size={18} color={tint}>
-          {price}
-        </SubTitle>
-      </SheetHead>
-      <SheetText>{info}</SheetText>
+      {show && (
+        <>
+          <SheetHead>
+            <Title size={25} color={tint}>
+              {name}
+            </Title>
+            <SubTitle size={18} color={tint}>
+              {price}
+            </SubTitle>
+          </SheetHead>
+          <SheetText>{sampleInfo}</SheetText>
+        </>
+      )}
     </View>
   );
 
@@ -68,15 +79,11 @@ export default function Sheet({ details }) {
         renderContent={renderContent}
         enabledBottomInitialAnimation={true}
         onOpenStart={() => {
-          setInfo(details);
-          setName("Kyrie 6");
-          setPrice("$130.00");
+          setShow(true);
           setbgcolor(white);
         }}
         onCloseStart={() => {
-          setInfo("");
-          setName("");
-          setPrice("");
+          setShow(false);
           setbgcolor("");
         }}
       />

@@ -90,9 +90,6 @@ const Detail = ({ route }) => {
     "UK 13",
   ];
 
-  const sampleInfo =
-    "Designed for Kyrie Irving's creative and unpredictable game, the Kyrie 6 focuses on comfort, control and energy return...";
-
   const [selectedSize, setSelectedSize] = useState();
   const [selectedTile, setSelectedTile] = useState(1);
   const [addedToCart, setAddedToCart] = useState();
@@ -234,7 +231,7 @@ const Detail = ({ route }) => {
           </ScrollView>
         </Discover>
       </StyledContainer>
-      <BottomSheet details={sampleInfo} />
+      <BottomSheet chosenId={chosenId} />
     </>
   );
 };
