@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 // Styled components
 import { StyledContainer, colors } from "./../styles/shared";
 import styled from "styled-components/native";
 
-const { primary, tint, gray } = colors;
+const { primary, tint, gray, lighttint, white } = colors;
 
 const SectionView = styled.View`
   flex-direction: row;
@@ -28,34 +28,60 @@ const Underline = styled.View`
   height: 4px;
 `;
 
-const ShowCase = styled(ScrollView)`
-  width: 100%;
-  margin-top: 10px;
+const ShowCase = styled(View)`
+  margin-vertical: 15px;
 `;
 
 const ShoeItem = styled.View`
-  height: 300px;
   background-color: ${gray};
   width: 250px;
   margin-right: 25px;
   border-radius: 25px;
   padding: 20px;
+  height: 300px;
+`;
+
+const DiscoverShoeItem = styled(ShoeItem)`
+  background-color: ${primary};
+  width: 45%;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 25px;
 `;
 
 const ItemHead = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  align-items: ${(props) => props.pos || "flex-start"};
+  padding: 15px;
+`;
+
+const DiscoverFoot = styled(ItemHead)`
+  align-items: ${(props) => props.pos || "flex-start"};
+  background-color: ${white};
+  border-radius: 25px;
+  elevation: 1;
 `;
 
 const Title = styled.Text`
   font-weight: bold;
-  color: ${primary};
+  color: ${(props) => props.color || primary};
   padding-bottom: 5px;
   font-size: 18px;
 `;
 
 const SubTitle = styled.Text`
-  color: ${primary};
+  color: ${(props) => props.color || primary};
+`;
+
+const Discover = styled.View`
+  flex: 1;
+  
+`;
+
+const DiscoverView = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const Home = () => {
@@ -80,7 +106,7 @@ const Home = () => {
                 <SectionText
                   style={{
                     fontWeight: "bold",
-                    color: tint,
+                    color: lighttint,
                   }}
                 >
                   {name}
@@ -100,29 +126,91 @@ const Home = () => {
         })}
       </SectionView>
       {/* <Text>{sections[activeSection].name}</Text> */}
-      <ShowCase horizontal={true}>
-        <ShoeItem>
-          <ItemHead>
-            <View>
-              <Title>Kyrie 6</Title>
-              <SubTitle>$130.00</SubTitle>
+      <ShowCase>
+        <ScrollView horizontal={true}>
+          <ShoeItem>
+            <ItemHead>
+              <View>
+                <Title>Kyrie 6</Title>
+                <SubTitle>$130.00</SubTitle>
+              </View>
+              <TouchableOpacity>
+                <AntDesign name="hearto" size={25} color={primary} />
+              </TouchableOpacity>
+            </ItemHead>
+            <View
+              style={{
+                backgroundColor: "white",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>Image space</Text>
             </View>
-            <TouchableOpacity>
-              <AntDesign name="hearto" size={25} color={primary} />
-            </TouchableOpacity>
-          </ItemHead>
-          <View
+          </ShoeItem>
+        </ScrollView>
+      </ShowCase>
+
+      <Discover>
+        <DiscoverView >
+          <SectionText
             style={{
-              backgroundColor: "white",
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
+              fontWeight: "bold",
+              color: lighttint,
             }}
           >
-            <Text>Image space</Text>
-          </View>
-        </ShoeItem>
-      </ShowCase>
+            DISCOVER
+          </SectionText>
+          <SectionText>
+            <Ionicons name="ios-list" size={25} color={lighttint} />
+          </SectionText>
+        </DiscoverView>
+        <DiscoverView>
+          <DiscoverShoeItem>
+            <View
+              style={{
+                backgroundColor: "white",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>Image space</Text>
+            </View>
+            <DiscoverFoot pos="flex-end">
+              <View>
+                <Title color={tint}>Kyrie 6</Title>
+                <SubTitle color={tint}>$130.00</SubTitle>
+              </View>
+              <TouchableOpacity>
+                <AntDesign name="hearto" size={25} color={tint} />
+              </TouchableOpacity>
+            </DiscoverFoot>
+          </DiscoverShoeItem>
+          <DiscoverShoeItem>
+            <View
+              style={{
+                backgroundColor: "white",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>Image space</Text>
+            </View>
+            <DiscoverFoot pos="flex-end">
+              <View>
+                <Title color={tint}>Kyrie 6</Title>
+                <SubTitle color={tint}>$130.00</SubTitle>
+              </View>
+              <TouchableOpacity>
+                <AntDesign name="hearto" size={25} color={tint} />
+              </TouchableOpacity>
+            </DiscoverFoot>
+          </DiscoverShoeItem>
+        </DiscoverView>
+      </Discover>
     </StyledContainer>
   );
 };
