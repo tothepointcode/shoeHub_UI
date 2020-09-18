@@ -24,7 +24,7 @@ import {
 } from "./../styles/shared";
 import styled from "styled-components/native";
 
-const { primary, tint, gray, lighttint, white } = colors;
+const { primary, tint, gray, lighttint, white, lightgray } = colors;
 
 const VarietySectionView = styled.View`
   flex-direction: row;
@@ -165,41 +165,126 @@ const Detail = ({ route }) => {
             showsVerticalScrollIndicator={false}
           >
             <SizeView>
-              {sizes.map((size, index) => {
-                if (index === selectedSize) {
-                  return (
-                    <TouchableOpacity
-                      key={index}
-                      onPress={() => {
-                        setSelectedSize(undefined);
-                        setAddedToCart(false);
-                      }}
-                    >
-                      <SelectedSize>
-                        <SubTitle style={{ fontSize: 16 }} color={white}>
-                          {size}
-                        </SubTitle>
-                      </SelectedSize>
-                    </TouchableOpacity>
-                  );
-                } else {
-                  return (
-                    <TouchableOpacity
-                      key={index}
-                      onPress={() => {
-                        setSelectedSize(index);
-                        setAddedToCart(false);
-                      }}
-                    >
-                      <Size>
-                        <SubTitle style={{ fontSize: 16 }} color={lighttint}>
+              {ActiveData.unavailableSizes.length === 0 &&
+                sizes.map((size, index) => {
+                  if (index === selectedSize) {
+                    return (
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => {
+                          setSelectedSize(undefined);
+                          setAddedToCart(false);
+                        }}
+                      >
+                        <SelectedSize>
+                          <SubTitle style={{ fontSize: 16 }} color={white}>
+                            {size}
+                          </SubTitle>
+                        </SelectedSize>
+                      </TouchableOpacity>
+                    );
+                  } else {
+                    return (
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => {
+                          setSelectedSize(index);
+                          setAddedToCart(false);
+                        }}
+                      >
+                        <Size>
+                          <SubTitle style={{ fontSize: 16 }} color={lighttint}>
+                            {size}
+                          </SubTitle>
+                        </Size>
+                      </TouchableOpacity>
+                    );
+                  }
+                })}
+
+              {ActiveData.unavailableSizes.length === 0 &&
+                sizes.map((size, index) => {
+                  if (index === selectedSize) {
+                    return (
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => {
+                          setSelectedSize(undefined);
+                          setAddedToCart(false);
+                        }}
+                      >
+                        <SelectedSize>
+                          <SubTitle style={{ fontSize: 16 }} color={white}>
+                            {size}
+                          </SubTitle>
+                        </SelectedSize>
+                      </TouchableOpacity>
+                    );
+                  } else {
+                    return (
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => {
+                          setSelectedSize(index);
+                          setAddedToCart(false);
+                        }}
+                      >
+                        <Size>
+                          <SubTitle style={{ fontSize: 16 }} color={lighttint}>
+                            {size}
+                          </SubTitle>
+                        </Size>
+                      </TouchableOpacity>
+                    );
+                  }
+                })}
+
+              {ActiveData.unavailableSizes.length > 0 &&
+                sizes.map((size, index) => {
+                  if (ActiveData.unavailableSizes.indexOf(size) !== -1) {
+                    return (
+                      <Size
+                        style={{ backgroundColor: lightgray, borderWidth: 0 }}
+                      >
+                        <SubTitle style={{ fontSize: 16 }} color={gray}>
                           {size}
                         </SubTitle>
                       </Size>
-                    </TouchableOpacity>
-                  );
-                }
-              })}
+                    );
+                  } else if (index === selectedSize) {
+                    return (
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => {
+                          setSelectedSize(undefined);
+                          setAddedToCart(false);
+                        }}
+                      >
+                        <SelectedSize>
+                          <SubTitle style={{ fontSize: 16 }} color={white}>
+                            {size}
+                          </SubTitle>
+                        </SelectedSize>
+                      </TouchableOpacity>
+                    );
+                  } else {
+                    return (
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => {
+                          setSelectedSize(index);
+                          setAddedToCart(false);
+                        }}
+                      >
+                        <Size>
+                          <SubTitle style={{ fontSize: 16 }} color={lighttint}>
+                            {size}
+                          </SubTitle>
+                        </Size>
+                      </TouchableOpacity>
+                    );
+                  }
+                })}
             </SizeView>
 
             {selectedSize !== undefined && addedToCart !== true && (

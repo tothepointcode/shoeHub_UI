@@ -86,6 +86,7 @@ const shoes = {
         name: "Kyrie 6",
         price: "$130",
         theme: "#62c2d7",
+        unavailableSizes: ["UK 6", "UK 13"]
       },
       {
         img: [
@@ -97,6 +98,7 @@ const shoes = {
         name: "2X 2K 4D",
         price: "$200",
         theme: "#81b0af",
+        unavailableSizes: []
       },
     ],
     discover: [
