@@ -6,6 +6,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./../screens/Home";
 import Detail from "./../screens/Detail";
 
+import NativeTab from './../components/NativeTab';
+
+
 // style
 import { colors } from "./../styles/shared";
 import styled from "styled-components/native";
@@ -72,7 +75,7 @@ const HomeStack = () => (
         title: "Shoes",
       }}
       name="Home"
-      component={Home}
+      component={NativeTab}
     />
     <Stack.Screen
       options={{

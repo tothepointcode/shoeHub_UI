@@ -19,18 +19,11 @@ import {
 } from "./../styles/shared";
 import styled from "styled-components/native";
 
-const { primary, tint, gray, lighttint, white } = colors;
-
-const SectionTouchable = styled(TouchableOpacity)``;
-
-const Underline = styled.View`
-  width: 30%;
-  background-color: ${lighttint};
-  height: 4px;
-`;
+const { primary, tint, lighttint } = colors;
 
 const ShowCase = styled(View)`
   margin-vertical: 15px;
+  margin-horizontal: -20px;
 `;
 
 const HomeButton = styled(TouchableOpacity)`
@@ -69,6 +62,7 @@ const StyledImage = styled(Image)`
 const StyledShoeItem = styled(ShoeItem)`
   background-color: ${(props) => props.theme};
   padding: 10px;
+  margin-horizontal: 20px;
 `;
 
 // context
@@ -86,7 +80,7 @@ const shoes = {
         name: "Kyrie 6",
         price: "$130",
         theme: "#62c2d7",
-        unavailableSizes: ["UK 6", "UK 13"]
+        unavailableSizes: ["UK 6", "UK 13"],
       },
       {
         img: [
@@ -98,7 +92,7 @@ const shoes = {
         name: "2X 2K 4D",
         price: "$200",
         theme: "#81b0af",
-        unavailableSizes: []
+        unavailableSizes: [],
       },
     ],
     discover: [
@@ -168,41 +162,14 @@ const Home = (props, { navigation }) => {
 
   return (
     <StyledContainer>
-      <SectionView>
-        {sections.map(({ name }, index) => {
-          if (index === activeSection) {
-            return (
-              <SectionTouchable
-                key={index}
-                onPress={() => setActiveSection(index)}
-              >
-                <SectionText
-                  style={{
-                    fontWeight: "bold",
-                    color: lighttint,
-                  }}
-                >
-                  {name}
-                </SectionText>
-                <Underline />
-              </SectionTouchable>
-            );
-          }
-          return (
-            <SectionTouchable
-              onPress={() => setActiveSection(index)}
-              key={index}
-            >
-              <SectionText>{name}</SectionText>
-            </SectionTouchable>
-          );
-        })}
-      </SectionView>
-
       {activeSection === 0 && (
         <>
           <ShowCase>
-            <ScrollView horizontal={true}>
+            <ScrollView
+              style={{}}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            >
               <ImageTiles data={data} {...props} />
             </ScrollView>
           </ShowCase>
