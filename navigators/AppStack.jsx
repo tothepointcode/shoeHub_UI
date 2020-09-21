@@ -1,18 +1,17 @@
-import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import React from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
 
 // React nav
-import { createStackNavigator } from "@react-navigation/stack";
-import Home from "./../screens/Home";
-import Detail from "./../screens/Detail";
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from './../screens/Home';
+import Detail from './../screens/Detail';
 
 import NativeTab from './../components/NativeTab';
 
-
 // style
-import { colors } from "./../styles/shared";
-import styled from "styled-components/native";
-import { AntDesign } from "@expo/vector-icons";
+import { colors } from './../styles/shared';
+import styled from 'styled-components/native';
+import { AntDesign } from '@expo/vector-icons';
 
 const StyledRightView = styled.View`
   flex-direction: row;
@@ -26,20 +25,20 @@ const StyledHeadTouchable = styled(TouchableOpacity)`
 const HeaderRight = ({ mode }) => {
   return (
     <>
-      {mode !== "Detail" && (
+      {mode !== 'Detail' && (
         <StyledRightView>
-          <StyledHeadTouchable onPress={() => alert("Search")}>
+          <StyledHeadTouchable onPress={() => alert('Search')}>
             <AntDesign name="search1" size={25} color="black" />
           </StyledHeadTouchable>
-          <StyledHeadTouchable onPress={() => alert("Account")}>
+          <StyledHeadTouchable onPress={() => alert('Account')}>
             <AntDesign name="user" size={25} color="black" />
           </StyledHeadTouchable>
         </StyledRightView>
       )}
 
-      {mode === "Detail" && (
+      {mode === 'Detail' && (
         <StyledRightView>
-          <StyledHeadTouchable>
+          <StyledHeadTouchable onPress={() => alert('Add to Fave')}>
             <AntDesign name="hearto" size={25} color={tint} />
           </StyledHeadTouchable>
         </StyledRightView>
@@ -64,7 +63,7 @@ const HomeStack = () => (
       headerTintColor: tint,
       headerTitleStyle: {
         fontSize: 30,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         paddingLeft: 5,
       },
     }}
@@ -72,7 +71,7 @@ const HomeStack = () => (
     <Stack.Screen
       options={{
         headerRight: () => <HeaderRight />,
-        title: "Shoes",
+        title: 'Shoes',
       }}
       name="Home"
       component={NativeTab}
@@ -80,7 +79,7 @@ const HomeStack = () => (
     <Stack.Screen
       options={{
         headerRight: () => <HeaderRight mode="Detail" />,
-        title: "",
+        title: '',
       }}
       name="Detail"
       component={Detail}

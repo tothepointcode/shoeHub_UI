@@ -16,29 +16,29 @@ import {
   SubTitle,
   ShoeItem,
   ItemHead,
-  width
+  width,
 } from './../styles/shared';
 import styled from 'styled-components/native';
 
 const { primary, tint, lighttint } = colors;
 
 const ShowCase = styled(View)`
-  margin-vertical: 15px;
+  margin-vertical: 20px;
+  margin-bottom: 30px;
   margin-horizontal: -20px;
 `;
 
 const HomeButton = styled(TouchableOpacity)`
   background-color: ${tint};
   flex-direction: row;
-  width: ${width*0.36}px;
+  width: ${width * 0.36}px;
   border-radius: 30px;
   padding: 7px;
   align-items: center;
   position: absolute;
   bottom: 40px;
-  left: ${width*0.32}px;
-  right: ${width*0.32}px;
-  
+  left: ${width * 0.32}px;
+  right: ${width * 0.32}px;
 `;
 
 const HomeIcon = styled(SimpleLineIcons)`
@@ -129,7 +129,7 @@ const ImageTiles = ({ data, navigation }) => {
                 <Title>{shoe.name}</Title>
                 <SubTitle>{shoe.price}</SubTitle>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => alert('Add to Fave')}>
                 <AntDesign name="hearto" size={25} color={primary} />
               </TouchableOpacity>
             </ItemHead>
@@ -197,7 +197,7 @@ const Home = (props, { navigation }) => {
                     <Title color={tint}>Kyrie 6</Title>
                     <SubTitle color={lighttint}>$130.00</SubTitle>
                   </View>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => alert('Add to Fave')}>
                     <AntDesign name="hearto" size={25} color={lighttint} />
                   </TouchableOpacity>
                 </DiscoverFoot>

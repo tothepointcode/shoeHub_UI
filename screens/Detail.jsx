@@ -183,43 +183,6 @@ const Detail = ({ route }) => {
                   }
                 })}
 
-              {ActiveData.unavailableSizes.length === 0 &&
-                sizes.map((size, index) => {
-                  if (index === selectedSize) {
-                    return (
-                      <TouchableOpacity
-                        key={index}
-                        onPress={() => {
-                          setSelectedSize(undefined);
-                          setAddedToCart(false);
-                        }}
-                      >
-                        <SelectedSize>
-                          <SubTitle style={{ fontSize: 16 }} color={white}>
-                            {size}
-                          </SubTitle>
-                        </SelectedSize>
-                      </TouchableOpacity>
-                    );
-                  } else {
-                    return (
-                      <TouchableOpacity
-                        key={index}
-                        onPress={() => {
-                          setSelectedSize(index);
-                          setAddedToCart(false);
-                        }}
-                      >
-                        <Size>
-                          <SubTitle style={{ fontSize: 16 }} color={lighttint}>
-                            {size}
-                          </SubTitle>
-                        </Size>
-                      </TouchableOpacity>
-                    );
-                  }
-                })}
-
               {ActiveData.unavailableSizes.length > 0 &&
                 sizes.map((size, index) => {
                   if (ActiveData.unavailableSizes.indexOf(size) !== -1) {
