@@ -6,7 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./../screens/Home";
 import Detail from "./../screens/Detail";
 
-import NativeTab from "./../components/NativeTab";
+import NativeTab from './../components/NativeTab';
+
 
 // style
 import { colors } from "./../styles/shared";
@@ -51,14 +52,38 @@ const Stack = createStackNavigator();
 const { tint, primary } = colors;
 
 const HomeStack = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    initialRouteName="Home"
+    screenOptions={{
+      headerStyle: {
+        borderBottomWidth: 0,
+        elevation: 0,
+        height: 100,
+        backgroundColor: primary,
+      },
+      headerTintColor: tint,
+      headerTitleStyle: {
+        fontSize: 30,
+        fontWeight: "bold",
+        paddingLeft: 5,
+      },
+    }}
+  >
     <Stack.Screen
       options={{
         headerRight: () => <HeaderRight />,
         title: "Shoes",
       }}
       name="Home"
-      component={Home}
+      component={NativeTab}
+    />
+    <Stack.Screen
+      options={{
+        headerRight: () => <HeaderRight mode="Detail" />,
+        title: "",
+      }}
+      name="Detail"
+      component={Detail}
     />
   </Stack.Navigator>
 );

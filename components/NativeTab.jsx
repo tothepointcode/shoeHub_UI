@@ -6,7 +6,7 @@ import { colors } from "./../styles/shared";
 
 const { primary, tint, gray, lighttint, white } = colors;
 
-import Home from "./../screens/Home";
+import HomeStack from "./../navigators/HomeStack";
 
 const SecondRoute = () => (
   <View
@@ -83,7 +83,7 @@ export default function SectionTabView() {
   ]);
 
   const renderScene = SceneMap({
-    first: Home,
+    first: HomeStack,
     second: SecondRoute,
     third: ThirdRoute,
   });

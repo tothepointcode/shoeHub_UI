@@ -3,13 +3,13 @@ import React from "react";
 
 // React nav
 import { NavigationContainer } from "@react-navigation/native";
-import HomeStack from "./navigators/HomeStack";
+import AppStack from "./navigators/AppStack";
 
 const App = () => {
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
-      <HomeStack />
+      <AppStack />
     </NavigationContainer>
   );
 };

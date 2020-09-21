@@ -244,6 +244,7 @@ const Detail = ({ route }) => {
                   if (ActiveData.unavailableSizes.indexOf(size) !== -1) {
                     return (
                       <Size
+                      key={index}
                         style={{ backgroundColor: lightgray, borderWidth: 0 }}
                       >
                         <SubTitle style={{ fontSize: 16 }} color={gray}>

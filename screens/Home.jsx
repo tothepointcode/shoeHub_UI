@@ -160,6 +160,8 @@ const Home = (props, { navigation }) => {
 
   const { discover } = data.popular;
 
+  console.log(navigation);
+
   return (
     <StyledContainer>
       {activeSection === 0 && (
