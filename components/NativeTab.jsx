@@ -1,12 +1,12 @@
-import * as React from "react";
-import { View, StyleSheet, Dimensions, Text } from "react-native";
-import { TabView, SceneMap, TabBar } from "react-native-tab-view";
+import * as React from 'react';
+import { View, StyleSheet, Dimensions, Text } from 'react-native';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
-import { colors } from "./../styles/shared";
+import { colors, width } from './../styles/shared';
 
 const { primary, tint, gray, lighttint, white } = colors;
 
-import HomeStack from "./../navigators/HomeStack";
+import HomeStack from './../navigators/HomeStack';
 
 const SecondRoute = () => (
   <View
@@ -14,8 +14,8 @@ const SecondRoute = () => (
       styles.scene,
       {
         backgroundColor: primary,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
       },
     ]}
   >
@@ -29,8 +29,8 @@ const ThirdRoute = () => (
       styles.scene,
       {
         backgroundColor: primary,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
       },
     ]}
   >
@@ -38,9 +38,7 @@ const ThirdRoute = () => (
   </View>
 );
 
-const initialLayout = { width: Dimensions.get("window").width };
-
-const width = Dimensions.get("window").width;
+const initialLayout = { width };
 
 const renderTabBar = (props) => (
   <TabBar
@@ -52,20 +50,20 @@ const renderTabBar = (props) => (
       marginHorizontal: 20,
     }}
     tabStyle={{
-      alignItems: "flex-start",
+      alignItems: 'flex-start',
       width: width * 0.3333,
       paddingLeft: 0,
       paddingBottom: 3,
     }}
     labelStyle={{
-      fontWeight: "bold",
-      textTransform: "capitalize",
+      fontWeight: 'bold',
+      textTransform: 'capitalize',
       fontSize: 19,
       width: width * 0.3333,
       marginLeft: 0,
     }}
     indicatorStyle={{
-      width: "5%",
+      width: '5%',
       backgroundColor: lighttint,
       height: 4,
     }}
@@ -77,9 +75,9 @@ const renderTabBar = (props) => (
 export default function SectionTabView() {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: "first", title: "Popular" },
-    { key: "second", title: "Categories" },
-    { key: "third", title: "Brands" },
+    { key: 'first', title: 'Popular' },
+    { key: 'second', title: 'Categories' },
+    { key: 'third', title: 'Brands' },
   ]);
 
   const renderScene = SceneMap({

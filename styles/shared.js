@@ -1,14 +1,17 @@
-import React from "react";
-import { View } from "react-native";
-import styled from "styled-components/native";
+import React from 'react';
+import { View, Dimensions } from 'react-native';
+import styled from 'styled-components/native';
+
+export const width = Dimensions.get('window').width;
+export const height = Dimensions.get('window').height;
 
 export const colors = {
-  primary: "#F7FAFC",
-  white: "#fff",
-  tint: "#000",
-  gray: "#A0AEC0",
-  lightgray: "#CBD5E0",
-  lighttint: "#4A5568",
+  primary: '#F7FAFC',
+  white: '#fff',
+  tint: '#000',
+  gray: '#A0AEC0',
+  lightgray: '#CBD5E0',
+  lighttint: '#4A5568',
 };
 
 const { gray, primary, white } = colors;
@@ -52,10 +55,9 @@ export const ShoeItem = styled.View`
 export const ItemHead = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  align-items: ${(props) => props.pos || "flex-start"};
+  align-items: ${(props) => props.pos || 'flex-start'};
   padding: 15px;
 `;
-
 
 export const DiscoverShoeItem = styled(ShoeItem)`
   background-color: ${primary};
@@ -67,7 +69,7 @@ export const DiscoverShoeItem = styled(ShoeItem)`
 `;
 
 export const DiscoverFoot = styled(ItemHead)`
-  align-items: ${(props) => props.pos || "flex-start"};
+  align-items: ${(props) => props.pos || 'flex-start'};
   background-color: ${white};
   border-radius: 25px;
   elevation: 1;
@@ -77,12 +79,10 @@ export const Title = styled.Text`
   font-weight: bold;
   color: ${(props) => props.color || primary};
   padding-bottom: 5px;
-  font-size: ${(props) => props.size || "18"}px;
-
+  font-size: ${(props) => props.size || '18'}px;
 `;
 
 export const SubTitle = styled.Text`
   color: ${(props) => props.color || primary};
-  font-size: ${(props) => props.size || "14"}px;
-
+  font-size: ${(props) => props.size || '14'}px;
 `;

@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
-import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import React, { useState, useContext, useEffect } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { AntDesign, Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 
 // Styled components
 import {
@@ -16,8 +16,9 @@ import {
   SubTitle,
   ShoeItem,
   ItemHead,
-} from "./../styles/shared";
-import styled from "styled-components/native";
+  width
+} from './../styles/shared';
+import styled from 'styled-components/native';
 
 const { primary, tint, lighttint } = colors;
 
@@ -29,12 +30,15 @@ const ShowCase = styled(View)`
 const HomeButton = styled(TouchableOpacity)`
   background-color: ${tint};
   flex-direction: row;
-  width: 40%;
-  margin: auto;
+  width: ${width*0.36}px;
   border-radius: 30px;
   padding: 7px;
   align-items: center;
-  margin-bottom: 30px;
+  position: absolute;
+  bottom: 40px;
+  left: ${width*0.32}px;
+  right: ${width*0.32}px;
+  
 `;
 
 const HomeIcon = styled(SimpleLineIcons)`
@@ -72,41 +76,41 @@ const shoes = {
     main: [
       {
         img: [
-          require("./../assets/kyrie1.png"),
-          require("./../assets/kyrie2.png"),
-          require("./../assets/kyrie4.png"),
-          require("./../assets/kyrie5.png"),
+          require('./../assets/kyrie1.png'),
+          require('./../assets/kyrie2.png'),
+          require('./../assets/kyrie4.png'),
+          require('./../assets/kyrie5.png'),
         ],
-        name: "Kyrie 6",
-        price: "$130",
-        theme: "#62c2d7",
-        unavailableSizes: ["UK 6", "UK 13"],
+        name: 'Kyrie 6',
+        price: '$130',
+        theme: '#62c2d7',
+        unavailableSizes: ['UK 6', 'UK 13'],
       },
       {
         img: [
-          require("./../assets/ZX2K.png"),
-          require("./../assets/ZX2K1.png"),
-          require("./../assets/ZX2K2.png"),
-          require("./../assets/ZX2K3.png"),
+          require('./../assets/ZX2K.png'),
+          require('./../assets/ZX2K1.png'),
+          require('./../assets/ZX2K2.png'),
+          require('./../assets/ZX2K3.png'),
         ],
-        name: "2X 2K 4D",
-        price: "$200",
-        theme: "#81b0af",
+        name: '2X 2K 4D',
+        price: '$200',
+        theme: '#81b0af',
         unavailableSizes: [],
       },
     ],
     discover: [
       {
-        img: [require("./../assets/kyrie2.png")],
-        name: "Kyrie Flytrap 3",
-        price: "$148",
-        theme: "",
+        img: [require('./../assets/kyrie2.png')],
+        name: 'Kyrie Flytrap 3',
+        price: '$148',
+        theme: '',
       },
       {
-        img: [require("./../assets/adidas1.png")],
-        name: "Adidas 3MC",
-        price: "$50",
-        theme: "",
+        img: [require('./../assets/adidas1.png')],
+        name: 'Adidas 3MC',
+        price: '$50',
+        theme: '',
       },
     ],
   },
@@ -131,11 +135,11 @@ const ImageTiles = ({ data, navigation }) => {
             </ItemHead>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate("Detail", { index })}
+              onPress={() => navigation.navigate('Detail', { index })}
               style={{
                 flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
               <StyledImage source={shoe.img[0]} />
@@ -148,89 +152,62 @@ const ImageTiles = ({ data, navigation }) => {
 };
 
 const Home = (props, { navigation }) => {
-  const [activeSection, setActiveSection] = useState(0);
-
   const data = useContext(ShoesData);
-
-  const sections = [
-    { name: "Popular" },
-    { name: "Categories" },
-    { name: "Brands" },
-  ];
-
   const { discover } = data.popular;
-
-  console.log(navigation);
 
   return (
     <StyledContainer>
-      {activeSection === 0 && (
-        <>
-          <ShowCase>
-            <ScrollView
-              style={{}}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
-              <ImageTiles data={data} {...props} />
-            </ScrollView>
-          </ShowCase>
+      <ShowCase>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <ImageTiles data={data} {...props} />
+        </ScrollView>
+      </ShowCase>
 
-          <Discover>
-            <DiscoverView>
-              <SectionText
-                style={{
-                  fontWeight: "bold",
-                  color: lighttint,
-                }}
-              >
-                DISCOVER
-              </SectionText>
-              <SectionText>
-                <Ionicons name="ios-list" size={25} color={lighttint} />
-              </SectionText>
-            </DiscoverView>
+      <Discover>
+        <DiscoverView>
+          <SectionText
+            style={{
+              fontWeight: 'bold',
+              color: lighttint,
+            }}
+          >
+            DISCOVER
+          </SectionText>
+          <SectionText>
+            <Ionicons name="ios-list" size={25} color={lighttint} />
+          </SectionText>
+        </DiscoverView>
 
-            <DiscoverView>
-              {discover.map((discoverItem, index) => {
-                return (
-                  <DiscoverShoeItem key={index}>
-                    <View
-                      style={{
-                        flex: 1,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Image
-                        resizeMode="contain"
-                        style={{ width: "100%", height: "100%" }}
-                        source={discoverItem.img[0]}
-                      />
-                    </View>
+        <DiscoverView>
+          {discover.map((discoverItem, index) => {
+            return (
+              <DiscoverShoeItem key={index}>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image resizeMode="contain" style={{ width: '100%', height: '100%' }} source={discoverItem.img[0]} />
+                </View>
 
-                    <DiscoverFoot pos="flex-end">
-                      <View>
-                        <Title color={tint}>Kyrie 6</Title>
-                        <SubTitle color={lighttint}>$130.00</SubTitle>
-                      </View>
-                      <TouchableOpacity>
-                        <AntDesign name="hearto" size={25} color={lighttint} />
-                      </TouchableOpacity>
-                    </DiscoverFoot>
-                  </DiscoverShoeItem>
-                );
-              })}
-            </DiscoverView>
-          </Discover>
-        </>
-      )}
-      {activeSection !== 0 && (
-        <Text style={{ textAlign: "center", fontSize: 20 }}>
-          {sections[activeSection].name} Here!
-        </Text>
-      )}
-      <HomeButton onPress={() => setActiveSection(0)}>
+                <DiscoverFoot pos="flex-end">
+                  <View>
+                    <Title color={tint}>Kyrie 6</Title>
+                    <SubTitle color={lighttint}>$130.00</SubTitle>
+                  </View>
+                  <TouchableOpacity>
+                    <AntDesign name="hearto" size={25} color={lighttint} />
+                  </TouchableOpacity>
+                </DiscoverFoot>
+              </DiscoverShoeItem>
+            );
+          })}
+        </DiscoverView>
+      </Discover>
+
+      <HomeButton onPress={() => alert('Home')}>
         <HomeIcon name="home" size={25} color={primary} />
         <HomeText>Home</HomeText>
       </HomeButton>
