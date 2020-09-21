@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
-import { AntDesign, Feather, Entypo } from "@expo/vector-icons";
+import React, { useState, useContext } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { AntDesign, Feather, Entypo } from '@expo/vector-icons';
 
-import { ShoesData } from "./Home";
+import { ShoesData } from './Home';
 
 // Bottom sheet
-import BottomSheet from "./../components/BottomSheet";
+import BottomSheet from './../components/BottomSheet';
 
 // Styled components
 import {
@@ -21,8 +21,8 @@ import {
   SubTitle,
   ShoeItem,
   ItemHead,
-} from "./../styles/shared";
-import styled from "styled-components/native";
+} from './../styles/shared';
+import styled from 'styled-components/native';
 
 const { primary, tint, gray, lighttint, white, lightgray } = colors;
 
@@ -43,7 +43,7 @@ const SmallTile = styled(TouchableOpacity)`
 `;
 
 const Ring = styled.View`
-  border: 2px solid ${tint};
+  border: 2px solid ${(props) => props.color || tint};
   border-radius: 30px;
   padding: 5px;
   margin-top: -5px;
@@ -79,16 +79,7 @@ const AddToCart = styled(TouchableOpacity)`
 `;
 
 const Detail = ({ route }) => {
-  const sizes = [
-    "UK 6",
-    "UK 7",
-    "UK 8",
-    "UK 9",
-    "UK 10",
-    "UK 11",
-    "UK 12",
-    "UK 13",
-  ];
+  const sizes = ['UK 6', 'UK 7', 'UK 8', 'UK 9', 'UK 10', 'UK 11', 'UK 12', 'UK 13'];
 
   const [selectedSize, setSelectedSize] = useState();
   const [selectedTile, setSelectedTile] = useState(1);
@@ -105,14 +96,10 @@ const Detail = ({ route }) => {
       <StyledContainer>
         <View
           style={{
-            height: "35%",
+            height: '35%',
           }}
         >
-          <Image
-            resizeMode="contain"
-            style={{ height: "100%", width: "100%" }}
-            source={smallTiles[selectedTile]}
-          />
+          <Image resizeMode="contain" style={{ height: '100%', width: '100%' }} source={smallTiles[selectedTile]} />
         </View>
 
         <VarietySectionView>
@@ -121,23 +108,17 @@ const Detail = ({ route }) => {
               return (
                 <Ring key={index}>
                   <SmallTile>
-                    <Image
-                      resizeMode="contain"
-                      style={{ height: "100%", width: "100%" }}
-                      source={tile}
-                    />
+                    <Image resizeMode="contain" style={{ height: '100%', width: '100%' }} source={tile} />
                   </SmallTile>
                 </Ring>
               );
             } else {
               return (
-                <SmallTile key={index} onPress={() => setSelectedTile(index)}>
-                  <Image
-                    resizeMode="contain"
-                    style={{ height: "100%", width: "100%" }}
-                    source={tile}
-                  />
-                </SmallTile>
+                <Ring color={primary} key={index}>
+                  <SmallTile key={index} onPress={() => setSelectedTile(index)}>
+                    <Image resizeMode="contain" style={{ height: '100%', width: '100%' }} source={tile} />
+                  </SmallTile>
+                </Ring>
               );
             }
           })}
@@ -147,7 +128,7 @@ const Detail = ({ route }) => {
           <DiscoverView style={{ padding: 10 }}>
             <SectionText
               style={{
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 color: lighttint,
               }}
             >
@@ -243,10 +224,7 @@ const Detail = ({ route }) => {
                 sizes.map((size, index) => {
                   if (ActiveData.unavailableSizes.indexOf(size) !== -1) {
                     return (
-                      <Size
-                      key={index}
-                        style={{ backgroundColor: lightgray, borderWidth: 0 }}
-                      >
+                      <Size key={index} style={{ backgroundColor: lightgray, borderWidth: 0 }}>
                         <SubTitle style={{ fontSize: 16 }} color={gray}>
                           {size}
                         </SubTitle>
@@ -297,20 +275,16 @@ const Detail = ({ route }) => {
             )}
 
             {selectedSize !== undefined && addedToCart === true && (
-              <AddToCart
-                style={{ backgroundColor: "#4FD1C5" }}
-                onPress={() => setAddedToCart(false)}
-              >
+              <AddToCart style={{ backgroundColor: '#4FD1C5' }} onPress={() => setAddedToCart(false)}>
                 <SubTitle
                   style={{
                     fontSize: 16,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                   color={white}
                 >
-                  <Feather name="shopping-bag" size={17} color={white} /> Added
-                  to bag
+                  <Feather name="shopping-bag" size={17} color={white} /> Added to bag
                 </SubTitle>
               </AddToCart>
             )}
